@@ -18,3 +18,7 @@
   width: 1fr;
   height: 1fr;
 }
+
+#playerInput {
+  text-align: center;
+}
