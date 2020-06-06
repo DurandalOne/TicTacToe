@@ -15,13 +15,17 @@ const display = (() => {
 
 const game = (() => {
   display.playButton.addEventListener("click", playGame);
+  display.resetButton.addEventListener("click", resetBoard);
   let turn = 1;
+  let gameWon = false;
 
   function playGame() {
     display.gameBoard.forEach((element) => {
       element.addEventListener("click", (event) => {
-        oneTurn(element);
-        checkWin();
+        if (!gameWon) {
+          oneTurn(element);
+          checkWin();
+        }
       });
     });
   }
@@ -74,10 +78,16 @@ const game = (() => {
 
   function gameOver(win) {
     document.getElementById("winner").innerHTML = `The winner is ${win}!`;
+    gameWon = true;
+  }
+
+  function resetBoard() {
     display.gameBoard.forEach((e) => {
-      e.removeEventListener("click", oneTurn);
+      e.innerHTML = " ";
+      e.style.backgroundColor = "white";
     });
-    // display.gameBoard.forEach((e) => (e.innerHTML = " "));
-    // display.table = ["", "", "", "", "", "", "", "", ""];
+    display.table = ["", "", "", "", "", "", "", "", ""];
+    turn = 1;
+    gameWon = false;
   }
 })();
