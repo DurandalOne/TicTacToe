@@ -72,8 +72,17 @@ const game = (() => {
         });
 
         gameOver(a);
+      } else if (display.table.every(checkArray)) {
+        display.gameBoard.forEach((e) => {
+          document.getElementById(e.id).style.backgroundColor = "orange";
+          gameOver("nobody");
+        });
       }
     }
+  }
+
+  function checkArray(e) {
+    return e == "X" || e == "O";
   }
 
   function gameOver(win) {
@@ -84,7 +93,7 @@ const game = (() => {
   function resetBoard() {
     display.gameBoard.forEach((e) => {
       e.innerHTML = " ";
-      e.style.backgroundColor = "white";
+      e.style.backgroundColor = "";
     });
     display.table = ["", "", "", "", "", "", "", "", ""];
     turn = 1;
