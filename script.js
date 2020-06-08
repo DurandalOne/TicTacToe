@@ -1,5 +1,5 @@
-const player = ((name, symbol) => {
-  return { name, symbol };
+const player = ((name) => {
+  return { name };
 })();
 
 const display = (() => {
